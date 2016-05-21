@@ -16,8 +16,8 @@ interface Ghost {
 abstract class GhostDecorator implements Ghost {
 	protected Ghost decoratedGhost;
 	
-	public GhostDecorator(Ghost decoratedEntity) {
-		this.decoratedGhost = decoratedEntity;
+	public GhostDecorator(Ghost decoratedGhost) {
+		this.decoratedGhost = decoratedGhost;
 	}
 	
 	public String name() {
@@ -37,7 +37,7 @@ abstract class GhostDecorator implements Ghost {
 	}
 	
 	public Ghost peel() {
-		return null;
+		return decoratedGhost;
 	}
 	
 	public String toString() {
@@ -81,8 +81,8 @@ class ConcreteGhost implements Ghost {
 }
 
 class RedGhostDecorator extends GhostDecorator {
-	public RedGhostDecorator(Ghost decoratedEntity) {
-		super(decoratedEntity);
+	public RedGhostDecorator(Ghost decoratedGhost) {
+		super(decoratedGhost);
 	}
 
 	public String identity() {
@@ -92,11 +92,15 @@ class RedGhostDecorator extends GhostDecorator {
 	public String howItMoves() {
 		return "chases";
 	}
+	
+	public Ghost peel() {
+		return decoratedGhost;
+	}
 }
 
 class PinkGhostDecorator extends GhostDecorator {
-	public PinkGhostDecorator(Ghost decoratedEntity) {
-		super(decoratedEntity);
+	public PinkGhostDecorator(Ghost decoratedGhost) {
+		super(decoratedGhost);
 	}
 	
 	public String identity() {
@@ -109,8 +113,8 @@ class PinkGhostDecorator extends GhostDecorator {
 }
 
 class CyanGhostDecorator extends GhostDecorator {
-	public CyanGhostDecorator(Ghost decoratedEntity) {
-		super(decoratedEntity);
+	public CyanGhostDecorator(Ghost decoratedGhost) {
+		super(decoratedGhost);
 	}
 	
 	public String howItMoves() {
@@ -123,8 +127,8 @@ class CyanGhostDecorator extends GhostDecorator {
 }
 
 class OrangeGhostDecorator extends GhostDecorator {
-	public OrangeGhostDecorator(Ghost decoratedEntity) {
-		super(decoratedEntity);
+	public OrangeGhostDecorator(Ghost decoratedGhost) {
+		super(decoratedGhost);
 	}
 	
 	public String howItMoves() {

@@ -25,13 +25,13 @@ public class PacManTests {
 		
 		// Pac-Man eats a power pellet
 		System.out.println("Pac-Man eats a power pellet:");
-		addBlueGhosts(ghosts);
+		blueGhosts(ghosts);
 		printGhosts(ghosts);
 		System.out.println("===============================================");
 
 		// Pac-Man eats Blinky
 		System.out.println("Pac-Man eats Blinky:");
-		ghosts.set(0, new ConcreteGhost("Blinky", ghosts.get(0).coord()));
+		ghosts.set(0, ghosts.get(0).peel().peel());
 		printGhosts(ghosts);
 		System.out.println("===============================================");
 		
@@ -43,7 +43,9 @@ public class PacManTests {
 		
 		// The power pellet effect expires
 		System.out.println("The power pellet effect expires:");
-		removeBlueGhosts(ghosts);
+		ghosts.set(1, ghosts.get(1).peel());
+		ghosts.set(2, ghosts.get(2).peel());
+		ghosts.set(3, ghosts.get(3).peel());
 		printGhosts(ghosts);
 	}
 	
@@ -53,17 +55,9 @@ public class PacManTests {
 		}
 	}
 	
-	public static void addBlueGhosts(ArrayList<Ghost> ghosts) {
+	public static void blueGhosts(ArrayList<Ghost> ghosts) {
 		for (Ghost e: ghosts) {
 			ghosts.set(ghosts.indexOf(e), new BlueGhostDecorator(e));
-		}
-	}
-	
-	public static void removeBlueGhosts(ArrayList<Ghost> ghosts) {
-		for (Ghost e: ghosts) {
-			if (e.peel() != null) {
-				ghosts.set(ghosts.indexOf(e), e.peel());
-			}
 		}
 	}
 }
